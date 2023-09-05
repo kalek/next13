@@ -6,7 +6,9 @@ type ProductListItemProps = {
 	product: ProductItemType;
 };
 
-export const ProductListItem = ({ product }: ProductListItemProps) => {
+export const ProductListItem = ({
+	product,
+}: ProductListItemProps) => {
 	return (
 		<li>
 			<article>
