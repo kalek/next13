@@ -1,7 +1,7 @@
 import { getProducts } from "@/api/products";
 import { Pagination } from "@/ui/organism/Pagination";
 import { ProductList } from "@/ui/organism/ProductList";
-import { type Product } from "@/ui/types";
+// import { type Product } from "@/ui/types";
 import { prodOnly } from "@/utils";
 // import { type ProductItemType } from "@/ui/types";
 
@@ -38,17 +38,17 @@ import { prodOnly } from "@/utils";
 // 	return data;
 // };
 
-const checkHowManyPages = async (
-	page: number,
-): Promise<Product[] | number> => {
-	const products = await getProducts(page);
-	if (products.length !== 0) {
-		page = page + 1;
-		return checkHowManyPages(page);
-	} else {
-		return page - 1;
-	}
-};
+// const checkHowManyPages = async (
+// 	page: number,
+// ): Promise<Product[] | number> => {
+// 	const products = await getProducts(page);
+// 	if (products.length !== 0) {
+// 		page = page + 1;
+// 		return checkHowManyPages(page);
+// 	} else {
+// 		return page - 1;
+// 	}
+// };
 
 const Products = async ({ params }: { params: { page: string } }) => {
 	const { page } = params;
