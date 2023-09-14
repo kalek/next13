@@ -12,5 +12,6 @@
 	},
 	"editor.quickSuggestions": {
 		"strings": true
-	}
+	},
+	"editor.tabSize": 2
 }

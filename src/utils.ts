@@ -4,3 +4,15 @@ export const formatMoney = (amount: number) => {
 		currency: "USD",
 	}).format(amount);
 };
+
+export const prodOnly = <TParams extends unknown[], TReturn>(
+	func: (...args: TParams) => TReturn,
+) => {
+	return (...args: TParams) => {
+		if (process.env.NODE_ENV === "production") {
+			return func(...args);
+		} else {
+			return [];
+		}
+	};
+};

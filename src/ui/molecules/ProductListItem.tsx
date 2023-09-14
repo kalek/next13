@@ -1,9 +1,11 @@
-import { type ProductItemType } from "../types";
+import Link from "next/link";
+// import { type ProductItemType } from "../types";
 import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
 import { ProductListItemDescription } from "@/ui/atoms/ProductListItemDescription";
+import { type Product } from "@/ui/types";
 
 type ProductListItemProps = {
-	product: ProductItemType;
+	product: Product;
 };
 
 export const ProductListItem = ({
@@ -11,10 +13,15 @@ export const ProductListItem = ({
 }: ProductListItemProps) => {
 	return (
 		<li>
-			<article>
-				<ProductCoverImage {...product.coverImage} />
-				<ProductListItemDescription product={product} />
-			</article>
+			<Link href={`/product/${product.id}`} prefetch={false}>
+				<article>
+					<ProductCoverImage
+						src={product.image}
+						alt={product.title}
+					/>
+					<ProductListItemDescription product={product} />
+				</article>
+			</Link>
 		</li>
 	);
 };

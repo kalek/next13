@@ -1,8 +1,8 @@
-const Home = () => {
+const Home = async () => {
 	return (
-		<section className="mx-auto max-w-md p-12 sm:max-w-2xl md:max-w-3xl lg:max-w-5xl">
-			Next13 Master
-		</section>
+		<>
+			<h1 className="mb-8 text-3xl">Next13 Master</h1>
+		</>
 	);
 };
 
