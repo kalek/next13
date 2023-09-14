@@ -71,7 +71,8 @@ const Products = async ({ params }: { params: { page: string } }) => {
 };
 
 export const generateStaticParams = prodOnly(async () => {
-	const pagesAmount = (await checkHowManyPages(1)) as number;
+	// const pagesAmount = (await checkHowManyPages(1)) as number;
+	const pagesAmount = 211;
 	const pages = [];
 	for (let i = 1; i <= pagesAmount; i++) {
 		pages.push({ page: i.toString() });
