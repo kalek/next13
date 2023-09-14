@@ -4,23 +4,25 @@ import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
 import { ProductListItemDescription } from "@/ui/atoms/ProductListItemDescription";
 import { prodOnly } from "@/utils";
 
-export const generateMetadata = async ({
-	params,
-}: {
-	params: { productId: string };
-}): Promise<Metadata> => {
-	const product = await getProduct(params.productId);
+export const generateMetadata = prodOnly(
+	async ({
+		params,
+	}: {
+		params: { productId: string };
+	}): Promise<Metadata> => {
+		const product = await getProduct(params.productId);
 
-	return {
-		title: `${product.title}`,
-		description: `${product.description}`,
-		openGraph: {
+		return {
 			title: `${product.title}`,
 			description: `${product.description}`,
-			images: [product.image],
-		},
-	};
-};
+			openGraph: {
+				title: `${product.title}`,
+				description: `${product.description}`,
+				images: [product.image],
+			},
+		};
+	},
+);
 
 const SingleProductPage = async ({
 	params,
@@ -28,7 +30,9 @@ const SingleProductPage = async ({
 	params: { productId: string };
 }) => {
 	const { productId } = params;
+	// const start = Date.now();
 	const product = await getProduct(productId);
+	// console.log(`Time elapsed: ${Date.now() - start} ms`);
 	const { id, title, category, image, description } = product;
 	return (
 		<div className="max-w-2xl" data-testid="single-product">
