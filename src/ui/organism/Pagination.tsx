@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { ActiveLink } from "../atoms/ActiveLink";
