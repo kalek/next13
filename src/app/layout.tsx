@@ -5,7 +5,6 @@ import { ActiveLink } from "@/ui/atoms/ActiveLink";
 import "./globals.css";
 import { Search } from "@/ui/organism/Search";
 import { getCategories } from "@/api/categories";
-import Link from "next/link";
 import { getCollections } from "@/api/collections";
 
 const inter = Inter({ subsets: ["latin"] });
