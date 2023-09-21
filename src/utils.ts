@@ -9,7 +9,7 @@ export const prodOnly = <TParams extends unknown[], TReturn>(
 	func: (...args: TParams) => TReturn,
 ) => {
 	return (...args: TParams) => {
-		if (process.env.NODE_ENV !== "production") {
+		if (process.env.NODE_ENV === "production") {
 			return func(...args);
 		} else {
 			return [];
