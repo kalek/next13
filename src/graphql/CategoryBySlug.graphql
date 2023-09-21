@@ -1,0 +1,11 @@
+query CategoryBySlug($slug: String!, $first: Int, $offset: Int) {
+	categoryBySlug(slug: $slug) {
+		name
+		products(first: $first, offset: $offset) {
+			data {
+				...ProductListItemFragment
+			}
+			total
+		}
+	}
+}

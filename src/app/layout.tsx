@@ -3,6 +3,10 @@ import type { Metadata } from "next";
 
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 import "./globals.css";
+import { Search } from "@/ui/organism/Search";
+import { getCategories } from "@/api/categories";
+import Link from "next/link";
+import { getCollections } from "@/api/collections";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,56 +19,99 @@ const productsLink = {
 	pathname: "/products",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const categories = await getCategories();
+	const collections = await getCollections();
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<nav>
-					<ul className="mt-8 flex justify-center gap-4">
-						<li>
-							<ActiveLink
-								className="text-blue-400 hover:text-blue-600"
-								activeClassName="border-b border-blue-600"
-								href="/"
-								exact
-							>
-								Homepage
-							</ActiveLink>
-						</li>
-						<li>
-							<ActiveLink
-								className="text-blue-400 hover:text-blue-600"
-								activeClassName="border-b border-blue-600"
-								href={productsLink}
-							>
-								All
-							</ActiveLink>
-						</li>
-						<li>
-							<ActiveLink
-								className="text-blue-400 hover:text-blue-600"
-								activeClassName="border-b border-blue-600"
-								href="/static/regulamin"
-							>
-								Regulamin
-							</ActiveLink>
-						</li>
-						<li>
-							<ActiveLink
-								className="text-blue-400 hover:text-blue-600"
-								activeClassName="border-b border-blue-600"
-								href="/static/polityka-prywatnosci"
-							>
-								Polityka prywatnosci
-							</ActiveLink>
-						</li>
-					</ul>
-				</nav>
 				<section className="sm:py-18 mx-auto flex w-full max-w-2xl flex-grow flex-col px-8 py-12 sm:px-6 lg:max-w-7xl">
+					<nav className="mb-12 flex flex-col justify-start">
+						<ul className="flex gap-4" role="navigation">
+							<li>
+								<ActiveLink
+									className="text-blue-400 hover:text-blue-600"
+									activeClassName="border-b border-blue-600"
+									href="/"
+									exact
+								>
+									Homepage
+								</ActiveLink>
+							</li>
+							<li>
+								<ActiveLink
+									className="text-blue-400 hover:text-blue-600"
+									activeClassName="border-b border-blue-600"
+									href={productsLink}
+								>
+									All
+								</ActiveLink>
+							</li>
+							<li>
+								<ActiveLink
+									className="text-blue-400 hover:text-blue-600"
+									activeClassName="border-b border-blue-600"
+									href="/categories"
+								>
+									Categories
+								</ActiveLink>
+							</li>
+							<li>
+								<ActiveLink
+									className="text-blue-400 hover:text-blue-600"
+									activeClassName="border-b border-blue-600"
+									href="/collections"
+								>
+									Collections
+								</ActiveLink>
+							</li>
+							<li>
+								<ActiveLink
+									className="text-blue-400 hover:text-blue-600"
+									activeClassName="border-b border-blue-600"
+									href="/static/regulamin"
+								>
+									Regulamin
+								</ActiveLink>
+							</li>
+							<li>
+								<ActiveLink
+									className="text-blue-400 hover:text-blue-600"
+									activeClassName="border-b border-blue-600"
+									href="/static/polityka-prywatnosci"
+								>
+									Polityka prywatnosci
+								</ActiveLink>
+							</li>
+							{collections.map((collection) => (
+								<li key={collection.id}>
+									<ActiveLink
+										href={`/collections/${collection.name.toLocaleLowerCase()}`}
+										className="text-blue-400 hover:text-blue-600"
+										activeClassName="border-b border-blue-600"
+									>
+										{collection.name}
+									</ActiveLink>
+								</li>
+							))}
+							{categories.map((category) => (
+								<li key={category.id}>
+									<ActiveLink
+										href={`/categories/${category.name.toLocaleLowerCase()}`}
+										className="text-blue-400 hover:text-blue-600"
+										activeClassName="border-b border-blue-600"
+									>
+										{category.name}
+									</ActiveLink>
+								</li>
+							))}
+						</ul>
+						<Search />
+					</nav>
 					{children}
 				</section>
 				<footer className="text-center">

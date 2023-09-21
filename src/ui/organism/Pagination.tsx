@@ -3,6 +3,7 @@ import { usePagination, DOTS } from "../../hooks/usePagination";
 import { ActiveLink } from "../atoms/ActiveLink";
 
 interface PaginationProps {
+	path?: "products" | `categories/${string}`;
 	totalCount: number;
 	siblingCount?: number;
 	currentPage: number;
@@ -10,6 +11,7 @@ interface PaginationProps {
 }
 
 export const Pagination = ({
+	path = "products",
 	totalCount,
 	siblingCount = 1,
 	currentPage,
@@ -41,7 +43,7 @@ export const Pagination = ({
 			{currentPage !== 1 && (
 				<ActiveLink
 					className="flex h-12 w-12 items-center justify-center bg-slate-300"
-					href={`/products/${currentPage - 1}`}
+					href={`/${path}/${currentPage - 1}`}
 				>
 					{"<"}
 				</ActiveLink>
@@ -64,7 +66,7 @@ export const Pagination = ({
 						className="flex h-12 w-12 items-center justify-center border-r"
 						activeClassName="bg-slate-300"
 						exact
-						href={`/products/${pageNumber}`}
+						href={`/${path}/${pageNumber}`}
 					>
 						{pageNumber}
 					</ActiveLink>
@@ -73,7 +75,7 @@ export const Pagination = ({
 			{lastPage !== currentPage && (
 				<ActiveLink
 					className="flex h-12 w-12 items-center justify-center bg-slate-300"
-					href={`/products/${currentPage + 1}`}
+					href={`/${path}/${currentPage + 1}`}
 				>
 					{">"}
 				</ActiveLink>

@@ -1,83 +1,41 @@
 import { getProducts } from "@/api/products";
 import { Pagination } from "@/ui/organism/Pagination";
 import { ProductList } from "@/ui/organism/ProductList";
-// import { type Product } from "@/ui/types";
 import { prodOnly } from "@/utils";
-// import { type ProductItemType } from "@/ui/types";
 
-// interface GetProductsResponse {
-// 	data: {
-// 		products: ProductItemType[];
-// 	};
-// }
-
-// const getProducts = async (): Promise<GetProductsResponse> => {
-// 	const response = await fetch(`${process.env.GRAPHQL_API_URL}`, {
-// 		method: "POST",
-// 		headers: { "Content-Type": "application/json" },
-// 		body: JSON.stringify({
-// 			query: `
-// 				query {
-// 					products {
-// 						id
-// 						name
-// 						price
-// 						category
-// 						coverImage {
-// 							alt
-// 							src
-// 						}
-// 					}
-// 				}
-// 			`,
-// 		}),
-// 	});
-
-// 	const data = (await response.json()) as GetProductsResponse;
-
-// 	return data;
-// };
-
-// const checkHowManyPages = async (
-// 	page: number,
-// ): Promise<Product[] | number> => {
-// 	const products = await getProducts(page);
-// 	if (products.length !== 0) {
-// 		page = page + 1;
-// 		return checkHowManyPages(page);
-// 	} else {
-// 		return page - 1;
-// 	}
-// };
+const PAGE_SIZE = 5;
 
 const Products = async ({ params }: { params: { page: string } }) => {
 	const { page } = params;
-	const products = await getProducts(parseInt(page));
+	const products = await getProducts({
+		first: PAGE_SIZE,
+		offset: (parseInt(page) - 1) * PAGE_SIZE,
+	});
 
-	if (products.length === 0) {
+	if (products.data.length === 0) {
 		return <div className="text-center">Not founds any products</div>;
 	}
 
 	return (
 		<>
-			<ProductList products={products} />
+			<ProductList products={products.data} />
 			<Pagination
 				currentPage={parseInt(page)}
-				totalCount={4220}
-				pageSize={20}
+				totalCount={products.total}
+				pageSize={PAGE_SIZE}
 			/>
 		</>
 	);
 };
 
 export const generateStaticParams = prodOnly(async () => {
-	// const pagesAmount = (await checkHowManyPages(1)) as number;
-	const pagesAmount = 211;
+	const products = await getProducts({ first: 1, offset: 0 });
+	const pagesAmount = Math.ceil(products.total / PAGE_SIZE);
 	const pages = [];
 	for (let i = 1; i <= pagesAmount; i++) {
 		pages.push({ page: i.toString() });
 	}
-	return pages;
+	return pages.slice(0, 5);
 });
 
 export default Products;

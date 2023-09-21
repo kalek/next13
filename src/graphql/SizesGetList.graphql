@@ -1,0 +1,6 @@
+query SizesGetList {
+	sizes {
+		id
+		name
+	}
+}

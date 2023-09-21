@@ -1,0 +1,21 @@
+query ProductGetItem($productId: ID!) {
+	product(id: $productId) {
+		id
+		name
+		categories {
+			id
+			name
+		}
+		images {
+			url
+		}
+		description
+		price
+		reviews {
+			id
+			description
+			rating
+			title
+		}
+	}
+}

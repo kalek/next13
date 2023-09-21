@@ -1,23 +1,56 @@
-import { type Product } from "@/ui/types";
+import { executeGraphql } from "./graphqlApi";
+import {
+	ProductsGetListDocument,
+	ProductGetItemDocument,
+	SuggestedProductGetListDocument,
+	SearchProductsDocument,
+} from "@/gql/graphql";
 
-const TAKE_COUNT = 20;
+export const getProducts = async ({
+	first,
+	offset,
+}: {
+	first: number;
+	offset: number;
+}) => {
+	const graphqlResponse = await executeGraphql(
+		ProductsGetListDocument,
+		{
+			first,
+			offset,
+		},
+	);
 
-export const getProducts = async (
-	page: number,
-): Promise<Product[]> => {
-	const offset = (page - 1) * TAKE_COUNT;
-	const url = `https://naszsklep-api.vercel.app/api/products?take=${TAKE_COUNT}&offset=${offset}`;
-	const response = await fetch(url);
-	const products = (await response.json()) as Product[];
-
-	return products;
+	return graphqlResponse.products;
 };
 
-export const getProduct = async (id: string): Promise<Product> => {
-	const response = await fetch(
-		`https://naszsklep-api.vercel.app/api/products/${id}`,
+export const getProduct = async (id: string) => {
+	const graphqlResponse = await executeGraphql(
+		ProductGetItemDocument,
+		{
+			productId: id,
+		},
 	);
-	const product = (await response.json()) as Product;
 
-	return product;
+	return graphqlResponse.product;
+};
+
+export const getSuggestedProducts = async () => {
+	const graphqlResponse = await executeGraphql(
+		SuggestedProductGetListDocument,
+		{},
+	);
+
+	return graphqlResponse.suggestedProducts;
+};
+
+export const searchProducts = async (query: string) => {
+	const graphqlResponse = await executeGraphql(
+		SearchProductsDocument,
+		{
+			query,
+		},
+	);
+
+	return graphqlResponse.searchProducts;
 };

@@ -1,0 +1,6 @@
+query ColorsGetList {
+	colors {
+		id
+		name
+	}
+}

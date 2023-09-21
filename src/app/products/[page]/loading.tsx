@@ -1,3 +1,7 @@
 export default function Loading() {
-	return <div className="text-center">Loading...</div>;
+	return (
+		<div aria-busy="true" className="text-center">
+			Loading...
+		</div>
+	);
 }

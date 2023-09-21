@@ -1,0 +1,8 @@
+query ProductsGetList($first: Int, $offset: Int) {
+	products(first: $first, offset: $offset) {
+		data {
+			...ProductListItemFragment
+		}
+		total
+	}
+}
