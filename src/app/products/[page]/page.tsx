@@ -22,7 +22,7 @@ const Products = async ({
 		orderBy: sortByPrice
 			? { price: "asc" }
 			: sortByRating
-			? { avgRating: "asc" }
+			? { rating: "asc" }
 			: undefined,
 	});
 

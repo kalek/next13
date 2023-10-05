@@ -147,9 +147,9 @@ export type ProductImagesArgs = {
 };
 
 export type ProductOrderByInput = {
-  avgRating?: InputMaybe<Sort>;
   name?: InputMaybe<Sort>;
   price?: InputMaybe<Sort>;
+  rating?: InputMaybe<Sort>;
 };
 
 export type ProductResponse = {
