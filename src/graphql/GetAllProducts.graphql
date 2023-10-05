@@ -1,0 +1,27 @@
+query GetAllProducts {
+	products {
+		data {
+			id
+			name
+			description
+			price
+			avgRating
+			categories {
+				id
+				name
+			}
+		}
+		total
+	}
+}
+
+input ProductOrderByInput {
+	name: Sort
+	price: Sort
+	avgRating: Sort
+}
+
+enum Sort {
+	asc
+	desc
+}

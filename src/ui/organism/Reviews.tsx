@@ -23,7 +23,7 @@ export const Reviews = ({
 	return (
 		<div
 			className="mt-12 border-t-2 pt-12"
-			data-testid="related-products"
+			data-testid="review-products"
 		>
 			<div className="text-2xl font-bold">Reviews</div>
 			<form className="mb-10" data-testid="add-review-form" ref={ref}>

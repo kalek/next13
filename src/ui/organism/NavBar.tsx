@@ -15,94 +15,98 @@ export const NavBar = async () => {
 	const quantity = cart?.orderItems.length ?? 0;
 
 	return (
-		<nav className="mb-12 flex flex-row items-center justify-between">
-			<ul className="flex gap-4" role="navigation">
-				<li>
-					<ActiveLink
-						className="text-blue-400 hover:text-blue-600"
-						activeClassName="border-b border-blue-600"
-						href="/"
-						exact
-					>
-						Homepage
-					</ActiveLink>
-				</li>
-				<li>
-					<ActiveLink
-						className="text-blue-400 hover:text-blue-600"
-						activeClassName="border-b border-blue-600"
-						href={productsLink}
-					>
-						All
-					</ActiveLink>
-				</li>
-				<li>
-					<ActiveLink
-						className="text-blue-400 hover:text-blue-600"
-						activeClassName="border-b border-blue-600"
-						href="/categories"
-					>
-						Categories
-					</ActiveLink>
-				</li>
-				<li>
-					<ActiveLink
-						className="text-blue-400 hover:text-blue-600"
-						activeClassName="border-b border-blue-600"
-						href="/collections"
-					>
-						Collections
-					</ActiveLink>
-				</li>
-				<li>
-					<ActiveLink
-						className="text-blue-400 hover:text-blue-600"
-						activeClassName="border-b border-blue-600"
-						href="/static/regulamin"
-					>
-						Regulamin
-					</ActiveLink>
-				</li>
-				<li>
-					<ActiveLink
-						className="text-blue-400 hover:text-blue-600"
-						activeClassName="border-b border-blue-600"
-						href="/static/polityka-prywatnosci"
-					>
-						Polityka prywatnosci
-					</ActiveLink>
-				</li>
-				{collections.map((collection) => (
-					<li key={collection.id}>
+		<div className="mb-12 flex flex-row items-center justify-between">
+			<nav>
+				<ul className="flex gap-4" role="navigation">
+					<li>
 						<ActiveLink
-							href={`/collections/${collection.name.toLocaleLowerCase()}`}
 							className="text-blue-400 hover:text-blue-600"
 							activeClassName="border-b border-blue-600"
+							href="/"
+							exact
 						>
-							{collection.name}
+							Homepage
 						</ActiveLink>
 					</li>
-				))}
-				{categories.map((category) => (
-					<li key={category.id}>
+					<li>
 						<ActiveLink
-							href={`/categories/${category.name.toLocaleLowerCase()}`}
 							className="text-blue-400 hover:text-blue-600"
 							activeClassName="border-b border-blue-600"
+							href={productsLink}
 						>
-							{category.name}
+							All
 						</ActiveLink>
 					</li>
-				))}
-			</ul>
-			<ActiveLink
-				href="/cart"
-				className="text-blue-400 hover:text-blue-600"
-				activeClassName="border-b border-blue-600"
-			>
-				Koszyk {quantity}
-			</ActiveLink>
+					<li>
+						<ActiveLink
+							className="text-blue-400 hover:text-blue-600"
+							activeClassName="border-b border-blue-600"
+							href="/categories"
+						>
+							Categories
+						</ActiveLink>
+					</li>
+					<li>
+						<ActiveLink
+							className="text-blue-400 hover:text-blue-600"
+							activeClassName="border-b border-blue-600"
+							href="/collections"
+						>
+							Collections
+						</ActiveLink>
+					</li>
+					<li>
+						<ActiveLink
+							className="text-blue-400 hover:text-blue-600"
+							activeClassName="border-b border-blue-600"
+							href="/static/regulamin"
+						>
+							Regulamin
+						</ActiveLink>
+					</li>
+					<li>
+						<ActiveLink
+							className="text-blue-400 hover:text-blue-600"
+							activeClassName="border-b border-blue-600"
+							href="/static/polityka-prywatnosci"
+						>
+							Polityka prywatnosci
+						</ActiveLink>
+					</li>
+					{collections.map((collection) => (
+						<li key={collection.id}>
+							<ActiveLink
+								href={`/collections/${collection.name.toLocaleLowerCase()}`}
+								className="text-blue-400 hover:text-blue-600"
+								activeClassName="border-b border-blue-600"
+							>
+								{collection.name}
+							</ActiveLink>
+						</li>
+					))}
+					{categories.map((category) => (
+						<li key={category.id}>
+							<ActiveLink
+								href={`/categories/${category.name.toLocaleLowerCase()}`}
+								className="text-blue-400 hover:text-blue-600"
+								activeClassName="border-b border-blue-600"
+							>
+								{category.name}
+							</ActiveLink>
+						</li>
+					))}
+				</ul>
+			</nav>
 			<Search />
-		</nav>
+			<div>
+				<ActiveLink
+					href="/cart"
+					className="text-blue-400 hover:text-blue-600"
+					activeClassName="border-b border-blue-600"
+				>
+					Koszyk {quantity}
+				</ActiveLink>
+			</div>
+		</div>
 	);
 };

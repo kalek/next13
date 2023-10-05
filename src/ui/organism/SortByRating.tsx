@@ -19,7 +19,7 @@ export const SortByRating = () => {
 	};
 
 	return (
-		<div
+		<button
 			data-testid="sort-by-rating"
 			onClick={handleSortByRating}
 			className={`w-fit cursor-pointer rounded-lg border p-2 ${
@@ -27,6 +27,6 @@ export const SortByRating = () => {
 			}`}
 		>
 			Sort by rating
-		</div>
+		</button>
 	);
 };
