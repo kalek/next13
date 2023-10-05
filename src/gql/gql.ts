@@ -24,7 +24,7 @@ const documents = {
     "query CollectionBySlug($slug: String!) {\n  collectionBySlug(slug: $slug) {\n    name\n    products {\n      ...ProductListItemFragment\n    }\n  }\n}": types.CollectionBySlugDocument,
     "query CollectionsGetList {\n  collections {\n    id\n    name\n    slug\n  }\n}": types.CollectionsGetListDocument,
     "query ColorsGetList {\n  colors {\n    id\n    name\n  }\n}": types.ColorsGetListDocument,
-    "query GetAllProducts {\n  products {\n    data {\n      id\n      name\n      description\n      price\n      avgRating\n      categories {\n        id\n        name\n      }\n    }\n    total\n  }\n}": types.GetAllProductsDocument,
+    "query GetAllProducts {\n  products {\n    data {\n      id\n      name\n      description\n      price\n      rating\n      categories {\n        id\n        name\n      }\n    }\n    total\n  }\n}": types.GetAllProductsDocument,
     "query ProductGetItem($productId: ID!) {\n  product(id: $productId) {\n    id\n    name\n    categories {\n      id\n      name\n    }\n    images {\n      url\n    }\n    description\n    price\n    reviews {\n      id\n      description\n      rating\n      title\n      name\n      email\n      createdAt\n    }\n  }\n}": types.ProductGetItemDocument,
     "query ProductsGetList($first: Int, $offset: Int, $orderBy: ProductOrderByInput) {\n  products(first: $first, offset: $offset, orderBy: $orderBy) {\n    data {\n      ...ProductListItemFragment\n    }\n    total\n  }\n}": types.ProductsGetListDocument,
     "mutation ReviewCreate($productId: ID!, $title: String!, $description: String!, $rating: Int!, $name: String!, $email: String!) {\n  addReview(\n    productId: $productId\n    title: $title\n    description: $description\n    rating: $rating\n    name: $name\n    email: $email\n  ) {\n    id\n  }\n}": types.ReviewCreateDocument,
@@ -32,7 +32,7 @@ const documents = {
     "query SizesGetList {\n  sizes {\n    id\n    name\n  }\n}": types.SizesGetListDocument,
     "query SuggestedProductGetList {\n  suggestedProducts {\n    ...ProductListItemFragment\n  }\n}": types.SuggestedProductGetListDocument,
     "fragment Cart on Order {\n  id\n  total\n  orderItems {\n    id\n    quantity\n    product {\n      id\n      name\n      price\n    }\n  }\n}": types.CartFragmentDoc,
-    "fragment ProductListItemFragment on Product {\n  id\n  name\n  categories(first: 1) {\n    name\n  }\n  images(first: 1) {\n    url\n  }\n  price\n  avgRating\n}": types.ProductListItemFragmentFragmentDoc,
+    "fragment ProductListItemFragment on Product {\n  id\n  name\n  categories(first: 1) {\n    name\n  }\n  images(first: 1) {\n    url\n  }\n  price\n  rating\n}": types.ProductListItemFragmentFragmentDoc,
 };
 
 /**
@@ -78,7 +78,7 @@ export function graphql(source: "query ColorsGetList {\n  colors {\n    id\n    
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query GetAllProducts {\n  products {\n    data {\n      id\n      name\n      description\n      price\n      avgRating\n      categories {\n        id\n        name\n      }\n    }\n    total\n  }\n}"): typeof import('./graphql').GetAllProductsDocument;
+export function graphql(source: "query GetAllProducts {\n  products {\n    data {\n      id\n      name\n      description\n      price\n      rating\n      categories {\n        id\n        name\n      }\n    }\n    total\n  }\n}"): typeof import('./graphql').GetAllProductsDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -110,7 +110,7 @@ export function graphql(source: "fragment Cart on Order {\n  id\n  total\n  orde
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment ProductListItemFragment on Product {\n  id\n  name\n  categories(first: 1) {\n    name\n  }\n  images(first: 1) {\n    url\n  }\n  price\n  avgRating\n}"): typeof import('./graphql').ProductListItemFragmentFragmentDoc;
+export function graphql(source: "fragment ProductListItemFragment on Product {\n  id\n  name\n  categories(first: 1) {\n    name\n  }\n  images(first: 1) {\n    url\n  }\n  price\n  rating\n}"): typeof import('./graphql').ProductListItemFragmentFragmentDoc;
 
 
 export function graphql(source: string) {

@@ -5,7 +5,7 @@ query GetAllProducts {
 			name
 			description
 			price
-			avgRating
+			rating
 			categories {
 				id
 				name
