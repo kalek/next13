@@ -16,7 +16,7 @@ export const getProducts = async ({
 	offset: number;
 	orderBy:
 		| { price: "asc" | "desc" }
-		| { rating: "asc" | "desc" }
+		| { averageRating: "asc" | "desc" }
 		| undefined;
 }) => {
 	const graphqlResponse = await executeGraphQl({

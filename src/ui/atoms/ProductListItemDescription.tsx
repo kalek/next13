@@ -6,7 +6,7 @@ type ProductListItemDescriptionProps = {
 };
 
 export const ProductListItemDescription = ({
-	product: { name, price, categories, rating },
+	product: { name, price, categories, averageRating },
 }: ProductListItemDescriptionProps) => {
 	const category = categories ? categories[0] : null;
 	return (
@@ -27,7 +27,7 @@ export const ProductListItemDescription = ({
 					{category.name}
 				</p>
 			)}
-			<p data-testid="product-rating">{rating.toFixed(2)}</p>
+			<p data-testid="product-rating">{averageRating.toFixed(2)}</p>
 		</div>
 	);
 };

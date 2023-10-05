@@ -14,7 +14,7 @@ query ProductsGetList(
 input ProductOrderByInput {
 	name: Sort
 	price: Sort
-	rating: Sort
+	averageRating: Sort
 }
 
 enum Sort {
