@@ -16,6 +16,9 @@ query ProductGetItem($productId: ID!) {
 			description
 			rating
 			title
+			name
+			email
+			createdAt
 		}
 	}
 }

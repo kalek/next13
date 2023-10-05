@@ -4,6 +4,7 @@ const nextConfig = {
 	experimental: {
 		typedRoutes: true,
 		mdxRss: true,
+		serverActions: true,
 	},
 	images: {
 		remotePatterns: [
@@ -22,6 +23,12 @@ const nextConfig = {
 			{
 				protocol: "https",
 				hostname: "media.graphassets.com",
+				port: "",
+				pathname: "/**",
+			},
+			{
+				protocol: "https",
+				hostname: "loremflickr.com",
 				port: "",
 				pathname: "/**",
 			},

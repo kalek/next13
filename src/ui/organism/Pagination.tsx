@@ -8,6 +8,7 @@ interface PaginationProps {
 	siblingCount?: number;
 	currentPage: number;
 	pageSize: number;
+	queryParams?: string | null;
 }
 
 export const Pagination = ({
@@ -16,6 +17,7 @@ export const Pagination = ({
 	siblingCount = 1,
 	currentPage,
 	pageSize,
+	queryParams = "",
 }: PaginationProps) => {
 	const paginationRange: (string | number)[] | undefined =
 		usePagination({
@@ -43,7 +45,7 @@ export const Pagination = ({
 			{currentPage !== 1 && (
 				<ActiveLink
 					className="flex h-12 w-12 items-center justify-center bg-slate-300"
-					href={`/${path}/${currentPage - 1}`}
+					href={`/${path}/${currentPage - 1}${queryParams}`}
 				>
 					{"<"}
 				</ActiveLink>
@@ -66,7 +68,7 @@ export const Pagination = ({
 						className="flex h-12 w-12 items-center justify-center border-r"
 						activeClassName="bg-slate-300"
 						exact
-						href={`/${path}/${pageNumber}`}
+						href={`/${path}/${pageNumber}${queryParams}`}
 					>
 						{pageNumber}
 					</ActiveLink>
@@ -75,7 +77,7 @@ export const Pagination = ({
 			{lastPage !== currentPage && (
 				<ActiveLink
 					className="flex h-12 w-12 items-center justify-center bg-slate-300"
-					href={`/${path}/${currentPage + 1}`}
+					href={`/${path}/${currentPage + 1}${queryParams}`}
 				>
 					{">"}
 				</ActiveLink>

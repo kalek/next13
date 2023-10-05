@@ -22,10 +22,12 @@ export const ActiveLink = <T extends string>({
 }) => {
 	const pathname = usePathname();
 	const stringPathname =
-		typeof href === "object" ? href.pathname || "" : href;
+		typeof href === "object"
+			? href.pathname?.split("?")[0] || ""
+			: href.split("?")[0];
 	const isActive = exact
 		? pathname === stringPathname
-		: pathname.includes(stringPathname);
+		: pathname.includes(stringPathname || "");
 
 	return (
 		<Link

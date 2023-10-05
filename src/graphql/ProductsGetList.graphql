@@ -1,8 +1,23 @@
-query ProductsGetList($first: Int, $offset: Int) {
-	products(first: $first, offset: $offset) {
+query ProductsGetList(
+	$first: Int
+	$offset: Int
+	$orderBy: ProductOrderByInput
+) {
+	products(first: $first, offset: $offset, orderBy: $orderBy) {
 		data {
 			...ProductListItemFragment
 		}
 		total
 	}
+}
+
+input ProductOrderByInput {
+	name: Sort
+	price: Sort
+	avgRating: Sort
+}
+
+enum Sort {
+	asc
+	desc
 }

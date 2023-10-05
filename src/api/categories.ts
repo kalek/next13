@@ -1,14 +1,13 @@
-import { executeGraphql } from "./graphqlApi";
+import { executeGraphQl } from "./graphqlApi";
 import {
 	CategoryListDocument,
 	CategoryBySlugDocument,
 } from "@/gql/graphql";
 
 export const getCategories = async () => {
-	const graphqlResponse = await executeGraphql(
-		CategoryListDocument,
-		{},
-	);
+	const graphqlResponse = await executeGraphQl({
+		query: CategoryListDocument,
+	});
 
 	return graphqlResponse.categories;
 };
@@ -22,14 +21,14 @@ export const getCategory = async ({
 	first: number;
 	offset: number;
 }) => {
-	const graphqlResponse = await executeGraphql(
-		CategoryBySlugDocument,
-		{
+	const graphqlResponse = await executeGraphQl({
+		query: CategoryBySlugDocument,
+		variables: {
 			slug,
 			first,
 			offset,
 		},
-	);
+	});
 
 	return graphqlResponse.categoryBySlug;
 };

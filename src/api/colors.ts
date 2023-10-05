@@ -1,11 +1,10 @@
-import { executeGraphql } from "./graphqlApi";
+import { executeGraphQl } from "./graphqlApi";
 import { ColorsGetListDocument } from "@/gql/graphql";
 
 export const getColors = async () => {
-	const graphqlResponse = await executeGraphql(
-		ColorsGetListDocument,
-		{},
-	);
+	const graphqlResponse = await executeGraphQl({
+		query: ColorsGetListDocument,
+	});
 
 	return graphqlResponse.colors;
 };

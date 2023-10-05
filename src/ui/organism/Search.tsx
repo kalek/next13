@@ -21,7 +21,7 @@ export const Search = () => {
 	}, [debouncedValue, router]);
 
 	return (
-		<div className="pt-8">
+		<div>
 			<input
 				role="searchbox"
 				className="w-[300px] border p-2"

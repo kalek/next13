@@ -1,11 +1,10 @@
-import { executeGraphql } from "./graphqlApi";
+import { executeGraphQl } from "./graphqlApi";
 import { SizesGetListDocument } from "@/gql/graphql";
 
 export const getSizes = async () => {
-	const graphqlResponse = await executeGraphql(
-		SizesGetListDocument,
-		{},
-	);
+	const graphqlResponse = await executeGraphQl({
+		query: SizesGetListDocument,
+	});
 
 	return graphqlResponse.sizes;
 };

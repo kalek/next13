@@ -16,9 +16,11 @@ export const ProductListItemDescription = ({
 					{name}
 				</h3>
 			</div>
-			<p className="text-sm font-medium text-gray-900">
-				<span className="sr-only">Cena:</span>
-				{formatMoney(price / 100)}$
+			<p
+				className="text-sm font-medium text-gray-900"
+				data-testid="product-price"
+			>
+				{formatMoney(price / 100)}
 			</p>
 			{category && (
 				<p className="text-sm font-medium text-gray-900">

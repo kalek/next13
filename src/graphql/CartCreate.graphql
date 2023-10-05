@@ -1,0 +1,5 @@
+mutation CartCreate {
+	createOrder(total: 0) {
+		...Cart
+	}
+}
